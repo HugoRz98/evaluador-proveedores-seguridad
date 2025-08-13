@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluador de Proveedores de Custodia/Seguridad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Evaluador de Proveedores de Custodia/Seguridad</h1>
+            <p>Sistema de evaluación integral para proveedores de servicios de custodia y seguridad</p>
+        </header>
+
+        <nav>
+            <button class="nav-btn active" onclick="mostrarSeccion('nueva')">Nueva Evaluación</button>
+            <button class="nav-btn" onclick="mostrarSeccion('guardadas')">Evaluaciones Guardadas</button>
+        </nav>
+
+        <main>
+            <!-- Sección Nueva Evaluación -->
+            <section id="nueva-evaluacion" class="seccion-activa">
+                <form id="form-evaluacion">
+                    <div class="form-header">
+                        <h2>Nueva Evaluación</h2>
+                        <div class="form-fields">
+                            <div class="field">
+                                <label for="nombre-proveedor">Nombre del Proveedor:</label>
+                                <input type="text" id="nombre-proveedor" required>
+                            </div>
+                            <div class="field">
+                                <label for="fecha-evaluacion">Fecha de Evaluación:</label>
+                                <input type="text" id="fecha-evaluacion" placeholder="DD/MM/AAAA" required>
+                            </div>
+                            <div class="field">
+                                <label for="nombre-evaluador">Nombre del Evaluador:</label>
+                                <input type="text" id="nombre-evaluador" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="matriz-evaluacion" class="matriz-container">
+                        <!-- La matriz se generará dinámicamente -->
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" onclick="guardarEvaluacion()" class="btn-guardar">Guardar Evaluación</button>
+                        <button type="button" onclick="finalizarEvaluacion()" class="btn-finalizar">Finalizar y Generar Reporte</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Sección Evaluaciones Guardadas -->
+            <section id="evaluaciones-guardadas" class="seccion-oculta">
+                <h2>Evaluaciones Guardadas</h2>
+                <div id="lista-evaluaciones">
+                    <!-- Las evaluaciones guardadas se mostrarán aquí -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de carga -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Generando reporte...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
