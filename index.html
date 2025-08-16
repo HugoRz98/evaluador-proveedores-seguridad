@@ -3,65 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluador de Proveedores de Custodia/Seguridad</title>
+    <title>Sistema de Evaluación de Proveedores de Custodia/Seguridad</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Evaluador de Proveedores de Custodia/Seguridad</h1>
-            <p>Sistema de evaluación integral para proveedores de servicios de custodia y seguridad</p>
-        </header>
+    <header>
+        <h1>Sistema de Evaluación de Proveedores</h1>
+        <p>Evaluación Integral de Proveedores de Custodia y Seguridad</p>
+    </header>
 
-        <nav>
-            <button class="nav-btn active" onclick="mostrarSeccion('nueva')">Nueva Evaluación</button>
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="mostrarSeccion('formulario')">Nueva Evaluación</button>
+            <button class="nav-btn" onclick="mostrarSeccion('evaluacion')">Matriz de Evaluación</button>
             <button class="nav-btn" onclick="mostrarSeccion('guardadas')">Evaluaciones Guardadas</button>
-        </nav>
+        </div>
+    </nav>
 
-        <main>
-            <!-- Sección Nueva Evaluación -->
-            <section id="nueva-evaluacion" class="seccion-activa">
-                <form id="form-evaluacion">
-                    <div class="form-header">
-                        <h2>Nueva Evaluación</h2>
-                        <div class="form-fields">
-                            <div class="field">
-                                <label for="nombre-proveedor">Nombre del Proveedor:</label>
-                                <input type="text" id="nombre-proveedor" required>
-                            </div>
-                            <div class="field">
-                                <label for="fecha-evaluacion">Fecha de Evaluación:</label>
-                                <input type="text" id="fecha-evaluacion" placeholder="DD/MM/AAAA" required>
-                            </div>
-                            <div class="field">
-                                <label for="nombre-evaluador">Nombre del Evaluador:</label>
-                                <input type="text" id="nombre-evaluador" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="matriz-evaluacion" class="matriz-container">
-                        <!-- La matriz se generará dinámicamente -->
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" onclick="guardarEvaluacion()" class="btn-guardar">Guardar Evaluación</button>
-                        <button type="button" onclick="finalizarEvaluacion()" class="btn-finalizar">Finalizar y Generar Reporte</button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Sección Evaluaciones Guardadas -->
-            <section id="evaluaciones-guardadas" class="seccion-oculta">
-                <h2>Evaluaciones Guardadas</h2>
-                <div id="lista-evaluaciones">
-                    <!-- Las evaluaciones guardadas se mostrarán aquí -->
+    <div class="container">
+        <!-- Sección: Formulario inicial -->
+        <section id="formulario" class="seccion">
+            <div class="formulario">
+                <h2>Información de la Evaluación</h2>
+                <p>Complete los datos básicos para comenzar la evaluación del proveedor.</p>
+                
+                <div class="form-group">
+                    <label for="nombreProveedor">Nombre del Proveedor *</label>
+                    <input type="text" id="nombreProveedor" placeholder="Ingrese el nombre del proveedor" required>
                 </div>
-            </section>
-        </main>
+                
+                <div class="form-group">
+                    <label for="fechaEvaluacion">Fecha de Evaluación *</label>
+                    <input type="text" id="fechaEvaluacion" placeholder="DD/MM/YYYY" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nombreEvaluador">Nombre del Evaluador *</label>
+                    <input type="text" id="nombreEvaluador" placeholder="Ingrese su nombre" required>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn" onclick="mostrarSeccion('evaluacion')">Continuar a Evaluación</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Matriz de evaluación -->
+        <section id="evaluacion" class="seccion">
+            <h2>Matriz de Evaluación</h2>
+            <p>Evalúe cada criterio utilizando la escala del 1 al 10. Agregue observaciones cuando sea necesario.</p>
+            
+            <div id="matrizEvaluacion">
+                <!-- La matriz se generará dinámicamente con JavaScript -->
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn" onclick="guardarEvaluacion()">Guardar Evaluación</button>
+                <button class="btn btn-secondary" onclick="finalizarEvaluacion()">Finalizar y Generar Reporte</button>
+            </div>
+        </section>
+
+        <!-- Sección: Evaluaciones guardadas -->
+        <section id="guardadas" class="seccion">
+            <h2>Evaluaciones Guardadas</h2>
+            <p>Aquí puede ver y gestionar todas las evaluaciones guardadas.</p>
+            
+            <div id="evaluacionesGuardadas">
+                <!-- Las evaluaciones guardadas se cargarán dinámicamente -->
+            </div>
+        </section>
     </div>
 
-    <!-- Modal de carga -->
+    <!-- Loading spinner -->
     <div id="loading" class="loading hidden">
         <div class="spinner"></div>
         <p>Generando reporte...</p>
